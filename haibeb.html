@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PMS Mood Zone</title>
+  <style>
+    :root {
+      --soft-pink: #ffc6d9;
+      --deep-pink: #ff7597;
+      --cream: #fff4f7;
+      --text-dark: #4a2b2b;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, var(--soft-pink), var(--cream));
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      transition: background 1s ease;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      text-shadow: 2px 2px var(--deep-pink);
+      margin-bottom: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 400px;
+      margin-bottom: 30px;
+    }
+
+    .mood-btn {
+      background-color: var(--deep-pink);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      color: white;
+      font-size: 1em;
+      margin: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .mood-btn:hover {
+      background-color: #ff4d73;
+      transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .heart {
+      font-size: 50px;
+      color: var(--deep-pink);
+      animation: heartbeat 1.5s infinite;
+      margin-top: 15px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .contact-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 20px;
+      background-color: #ff7597;
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background-color: #ff4d73;
+      transform: scale(1.05);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9em;
+      color: #9a5f6b;
+    }
+  </style>
+</head>
+<body>
+  <h1>💢 PMS Mood Zone 💢</h1>
+  <p>Hari ini mungkin sedikit sensitif... jadi kalau kamu sayang aku, kasih coklat aja ya 🍫</p>
+  <div>
+    <button class="mood-btn" onclick="giveChoco()">🍫 Butuh Coklat</button>
+    <button class="mood-btn" onclick="needHug()">🤗 Butuh Peluk</button>
+  </div>
+  <div class="heart" id="heart">❤️</div>
+
+  <a href="https://wa.me/62882008640644" target="_blank" class="contact-btn">💌 Hubungi Aku di WhatsApp</a>
+
+  <footer>© 2025 PMS Mode — mood swing approved 💅</footer>
+
+  <!-- Lagu otomatis -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/15/audio_f9db1d7ef4.mp3?filename=sweet-dreams-14304.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio tag.
+  </audio>
+
+  <audio id="bgMusic2" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/09/04/audio_1dcbff0d71.mp3?filename=soft-romantic-ambient-166997.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const bg1 = document.getElementById('bgMusic');
+    const bg2 = document.getElementById('bgMusic2');
+
+    // Ganti lagu otomatis tiap 40 detik
+    setInterval(() => {
+      if (!bg1.paused) {
+        bg1.pause();
+        bg2.play();
+      } else {
+        bg2.pause();
+        bg1.play();
+      }
+    }, 40000);
+
+    function giveChoco() {
+      document.body.style.background = 'linear-gradient(180deg, #ffb3c6, #fff4f7)';
+      document.querySelector('p').innerText = "Yay! Coklat bikin mood aku balik lagi 😋";
+      document.getElementById('heart').innerText = '🍫💖';
+    }
+
+    function needHug() {
+      document.body.style.background = 'linear-gradient(180deg, #f8c2d2, #f9e1e7)';
+      document.querySelector('p').innerText = "Peluk virtual diterima 🤗, makasih udah sabar yaa 💕";
+      document.getElementById('heart').innerText = '🤍';
+    }
+  </script>
+</body>
+</html>
